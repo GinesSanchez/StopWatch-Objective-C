@@ -15,6 +15,9 @@
 		752FCBA3244DA95D004DA87C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 752FCBA1244DA95D004DA87C /* LaunchScreen.storyboard */; };
 		752FCBA6244DA95D004DA87C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 752FCBA5244DA95D004DA87C /* main.m */; };
 		752FCBB0244DA95E004DA87C /* StopWatch_Objective_CTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 752FCBAF244DA95E004DA87C /* StopWatch_Objective_CTests.m */; };
+		75A995D9244DB33000B0B620 /* DispatchSourceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */; };
+		75A995DC244DBB0500B0B620 /* DispatchSourceTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */; };
+		75A995DD244DBB7C00B0B620 /* DispatchSourceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		752FCBAB244DA95E004DA87C /* StopWatch-Objective-CTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StopWatch-Objective-CTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		752FCBAF244DA95E004DA87C /* StopWatch_Objective_CTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopWatch_Objective_CTests.m; sourceTree = "<group>"; };
 		752FCBB1244DA95E004DA87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75A995D7244DB33000B0B620 /* DispatchSourceTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchSourceTimer.h; sourceTree = "<group>"; };
+		75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSourceTimer.m; sourceTree = "<group>"; };
+		75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSourceTimerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +90,8 @@
 		752FCB92244DA95C004DA87C /* StopWatch-Objective-C */ = {
 			isa = PBXGroup;
 			children = (
-				752FCB93244DA95C004DA87C /* AppDelegate.h */,
-				752FCB94244DA95C004DA87C /* AppDelegate.m */,
-				752FCB96244DA95C004DA87C /* SceneDelegate.h */,
-				752FCB97244DA95C004DA87C /* SceneDelegate.m */,
-				752FCB99244DA95C004DA87C /* ViewController.h */,
-				752FCB9A244DA95C004DA87C /* ViewController.m */,
-				752FCB9C244DA95C004DA87C /* Main.storyboard */,
+				75A995D1244DB16E00B0B620 /* Sources */,
+				75A995D0244DB16500B0B620 /* Resources */,
 				752FCB9F244DA95D004DA87C /* Assets.xcassets */,
 				752FCBA1244DA95D004DA87C /* LaunchScreen.storyboard */,
 				752FCBA4244DA95D004DA87C /* Info.plist */,
@@ -102,10 +103,82 @@
 		752FCBAE244DA95E004DA87C /* StopWatch-Objective-CTests */ = {
 			isa = PBXGroup;
 			children = (
+				75A995DA244DBAE300B0B620 /* Classes */,
 				752FCBAF244DA95E004DA87C /* StopWatch_Objective_CTests.m */,
 				752FCBB1244DA95E004DA87C /* Info.plist */,
 			);
 			path = "StopWatch-Objective-CTests";
+			sourceTree = "<group>";
+		};
+		754181CD244DE96B0048755C /* DispatchSourceTimer */ = {
+			isa = PBXGroup;
+			children = (
+				75A995D7244DB33000B0B620 /* DispatchSourceTimer.h */,
+				75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */,
+			);
+			path = DispatchSourceTimer;
+			sourceTree = "<group>";
+		};
+		75A995D0244DB16500B0B620 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		75A995D1244DB16E00B0B620 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				75A995D6244DB30100B0B620 /* Classes */,
+				75A995D3244DB19000B0B620 /* Views */,
+				75A995D2244DB17500B0B620 /* AppDelegate */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		75A995D2244DB17500B0B620 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				752FCB93244DA95C004DA87C /* AppDelegate.h */,
+				752FCB94244DA95C004DA87C /* AppDelegate.m */,
+				752FCB96244DA95C004DA87C /* SceneDelegate.h */,
+				752FCB97244DA95C004DA87C /* SceneDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		75A995D3244DB19000B0B620 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				75A995D4244DB19500B0B620 /* Default */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		75A995D4244DB19500B0B620 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				752FCB99244DA95C004DA87C /* ViewController.h */,
+				752FCB9A244DA95C004DA87C /* ViewController.m */,
+				752FCB9C244DA95C004DA87C /* Main.storyboard */,
+			);
+			path = Default;
+			sourceTree = "<group>";
+		};
+		75A995D6244DB30100B0B620 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				754181CD244DE96B0048755C /* DispatchSourceTimer */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		75A995DA244DBAE300B0B620 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +284,7 @@
 				752FCB9B244DA95C004DA87C /* ViewController.m in Sources */,
 				752FCB95244DA95C004DA87C /* AppDelegate.m in Sources */,
 				752FCBA6244DA95D004DA87C /* main.m in Sources */,
+				75A995D9244DB33000B0B620 /* DispatchSourceTimer.m in Sources */,
 				752FCB98244DA95C004DA87C /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A995DD244DBB7C00B0B620 /* DispatchSourceTimer.m in Sources */,
+				75A995DC244DBB0500B0B620 /* DispatchSourceTimerTests.m in Sources */,
 				752FCBB0244DA95E004DA87C /* StopWatch_Objective_CTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
