@@ -7,11 +7,10 @@
 //
 
 #import "StopWatchViewController.h"
-#import "ViewModelState.h"
+#import "StopWatchConstants.h"
+#import "StopWatchViewModel.h"
 
 @interface StopWatchViewController ()
-
-@property (nonatomic) StopWatchViewControllerEvent event;
 
 @end
 
@@ -21,38 +20,24 @@
     [super viewDidLoad];
 
     [self addObserverToViewModelState];
-    [self notifyDidUpdateEvent: didLoad];
-}
-
-//MARK: - didSet
--(void) setEvent: (StopWatchViewControllerEvent) event {
-    _event = event;
-    
+    [self.viewModel viewDidLoad];
 }
 
 //MARK: - Notification methods
 -(void) addObserverToViewModelState {
     [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(updateStateWithViewControllerEventNotification:)
-                                                 name: @"DidUpdateStopWatchViewModelState"
+                                             selector: @selector(didUpdateViewModelStateWithNotification:)
+                                                 name: kDidUpdateStopWatchViewModelState
                                                object: nil];
 }
 
--(void) notifyDidUpdateEvent: (StopWatchViewControllerEvent) event {
-    NSNumber *eventNumber = [NSNumber numberWithInt: (int) event];
-    NSDictionary *userInfo = @{ @"event": eventNumber };
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"DidUpdateStopWatchViewControllerEvent"
-                                                        object: nil
-                                                      userInfo: userInfo];
-}
-
--(void) updateStateWithViewControllerEventNotification: (NSNotification*)notification {
-    if ([[notification name] isEqualToString: @"DidUpdateStopWatchViewModelState"]) {
-        ViewModelState state = [notification.userInfo[@"state"] intValue];
+-(void) didUpdateViewModelStateWithNotification: (NSNotification*)notification {
+    if ([[notification name] isEqualToString: kDidUpdateStopWatchViewModelState]) {
+        StopMachineViewModelState state = [notification.userInfo[kState] intValue];
         //TODO: Add Switch
         switch (state) {
-            case loading:
-                //TODO:
+            case initialized:
+                //TODO: Set to 00:00,00?
                 break;
 
             default:

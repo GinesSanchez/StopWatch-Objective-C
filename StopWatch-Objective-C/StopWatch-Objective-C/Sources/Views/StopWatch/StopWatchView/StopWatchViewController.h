@@ -10,11 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, StopWatchViewControllerEvent) {
-    didLoad
-};
+@protocol StopWatchViewControllerDelegate <NSObject>
+
+-(void) viewDidLoad;
+
+@end
+
 
 @interface StopWatchViewController : UIViewController
+
+@property (nonatomic) id <StopWatchViewControllerDelegate> viewModel;
 
 @end
 

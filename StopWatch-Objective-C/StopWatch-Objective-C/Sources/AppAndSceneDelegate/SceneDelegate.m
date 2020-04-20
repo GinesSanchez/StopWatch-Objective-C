@@ -20,7 +20,7 @@
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     if (self.window) {
-        self.appCoordinator = [[AppCoordinator alloc] initWithNavigationController: [UINavigationController new]];
+        self.appCoordinator = [[AppCoordinator alloc] initWithNavigationController: [UINavigationController new] viewModuleFactory: [ViewModuleFactory new]];
         self.window.rootViewController = self.appCoordinator.navigationController;
         [self.window makeKeyAndVisible];
         [self.appCoordinator start];

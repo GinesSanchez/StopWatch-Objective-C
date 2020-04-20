@@ -18,11 +18,13 @@
 @implementation AppCoordinator
 
 @synthesize navigationController;
+@synthesize viewModuleFactory;
 
-- (instancetype)initWithNavigationController:(UINavigationController *)navigationController {
+- (instancetype)initWithNavigationController:(UINavigationController *)navigationController viewModuleFactory: (ViewModuleFactory *)viewModuleFactory {
     self = [super init];
     if (self) {
         self.navigationController = navigationController;
+        self.viewModuleFactory = viewModuleFactory;
         return self;
     }
 
@@ -30,7 +32,7 @@
 }
 
 - (void)start {
-    self.stopWatchCoordinator = [[StopWatchCoordinator alloc] initWithNavigationController: self.navigationController];
+    self.stopWatchCoordinator = [[StopWatchCoordinator alloc] initWithNavigationController: self.navigationController viewModuleFactory: self.viewModuleFactory];
     [self.stopWatchCoordinator start];
 }
 

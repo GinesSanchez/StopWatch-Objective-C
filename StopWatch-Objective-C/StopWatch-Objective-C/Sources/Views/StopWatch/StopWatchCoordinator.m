@@ -18,20 +18,22 @@
 @implementation StopWatchCoordinator
 
 @synthesize navigationController;
+@synthesize viewModuleFactory;
 
--(instancetype) initWithNavigationController: (UINavigationController *) navigationController {
+-(instancetype) initWithNavigationController: (UINavigationController *) navigationController viewModuleFactory: (ViewModuleFactory *) viewModuleFactory {
     self = [super init];
 
     if (self) {
         self.navigationController = navigationController;
+        self.viewModuleFactory = viewModuleFactory;
         return self;
     }
 
     return nil;
 }
 
-- (void)start { 
-    StopWatchViewController *viewController = [[StopWatchViewController alloc]initWithNibName: @"StopWatchViewController" bundle:nil];
+- (void)start {
+    StopWatchViewController *viewController = [self.viewModuleFactory createStopWatchViewModule];
     [self.navigationController pushViewController: viewController animated: NO];
 }
 

@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewModuleFactory.h"
 
 @protocol Coordinating <NSObject>
 
 @property (nonatomic) UINavigationController *navigationController;
+@property (nonatomic) ViewModuleFactory *viewModuleFactory;
 
--(instancetype) initWithNavigationController: (UINavigationController *) navigationController;
+-(instancetype) initWithNavigationController: (UINavigationController *) navigationController viewModuleFactory: (ViewModuleFactory *) viewModuleFactory;
 -(void) start;
 -(void) stop;
 

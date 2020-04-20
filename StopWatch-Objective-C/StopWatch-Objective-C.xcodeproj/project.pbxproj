@@ -20,6 +20,7 @@
 		754181D9244DECF40048755C /* StopWatchCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181D8244DECF40048755C /* StopWatchCoordinator.m */; };
 		754181DC244DEE4F0048755C /* AppCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181DB244DEE4F0048755C /* AppCoordinator.m */; };
 		754181DF244DF1350048755C /* StopWatchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181DE244DF1350048755C /* StopWatchViewModel.m */; };
+		754181EC244E06590048755C /* ViewModuleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181EB244E06590048755C /* ViewModuleFactory.m */; };
 		75A995D9244DB33000B0B620 /* DispatchSourceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */; };
 		75A995DC244DBB0500B0B620 /* DispatchSourceTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */; };
 		75A995DD244DBB7C00B0B620 /* DispatchSourceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */; };
@@ -61,7 +62,11 @@
 		754181DB244DEE4F0048755C /* AppCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppCoordinator.m; sourceTree = "<group>"; };
 		754181DD244DF1350048755C /* StopWatchViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopWatchViewModel.h; sourceTree = "<group>"; };
 		754181DE244DF1350048755C /* StopWatchViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopWatchViewModel.m; sourceTree = "<group>"; };
-		754181E3244DF9110048755C /* ViewModelState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModelState.h; sourceTree = "<group>"; };
+		754181E6244DFF820048755C /* StopWatchConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopWatchConstants.h; sourceTree = "<group>"; };
+		754181E8244DFFFF0048755C /* StateMachineConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateMachineConstants.h; sourceTree = "<group>"; };
+		754181EA244E06590048755C /* ViewModuleFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModuleFactory.h; sourceTree = "<group>"; };
+		754181EB244E06590048755C /* ViewModuleFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModuleFactory.m; sourceTree = "<group>"; };
+		754181ED244E067A0048755C /* ViewModuleHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModuleHeaders.h; sourceTree = "<group>"; };
 		75A995D7244DB33000B0B620 /* DispatchSourceTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchSourceTimer.h; sourceTree = "<group>"; };
 		75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSourceTimer.m; sourceTree = "<group>"; };
 		75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSourceTimerTests.m; sourceTree = "<group>"; };
@@ -146,19 +151,12 @@
 		754181D1244DECC10048755C /* StopWatch */ = {
 			isa = PBXGroup;
 			children = (
+				754181E6244DFF820048755C /* StopWatchConstants.h */,
 				754181D7244DECF40048755C /* StopWatchCoordinator.h */,
 				754181D8244DECF40048755C /* StopWatchCoordinator.m */,
 				754181E5244DFF3D0048755C /* StopWatchView */,
 			);
 			path = StopWatch;
-			sourceTree = "<group>";
-		};
-		754181E2244DF8FF0048755C /* StateEnums */ = {
-			isa = PBXGroup;
-			children = (
-				754181E3244DF9110048755C /* ViewModelState.h */,
-			);
-			path = StateEnums;
 			sourceTree = "<group>";
 		};
 		754181E5244DFF3D0048755C /* StopWatchView */ = {
@@ -173,6 +171,24 @@
 			path = StopWatchView;
 			sourceTree = "<group>";
 		};
+		754181E7244DFFE20048755C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				754181E8244DFFFF0048755C /* StateMachineConstants.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		754181E9244E06470048755C /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				754181EA244E06590048755C /* ViewModuleFactory.h */,
+				754181EB244E06590048755C /* ViewModuleFactory.m */,
+				754181ED244E067A0048755C /* ViewModuleHeaders.h */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		75A995D0244DB16500B0B620 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,7 +199,8 @@
 		75A995D1244DB16E00B0B620 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				754181E2244DF8FF0048755C /* StateEnums */,
+				754181E9244E06470048755C /* Factories */,
+				754181E7244DFFE20048755C /* Constants */,
 				754181CE244DEAE80048755C /* Protocols */,
 				75A995D6244DB30100B0B620 /* Classes */,
 				75A995D3244DB19000B0B620 /* Views */,
@@ -344,6 +361,7 @@
 				754181DC244DEE4F0048755C /* AppCoordinator.m in Sources */,
 				754181DF244DF1350048755C /* StopWatchViewModel.m in Sources */,
 				752FCB9B244DA95C004DA87C /* ViewController.m in Sources */,
+				754181EC244E06590048755C /* ViewModuleFactory.m in Sources */,
 				752FCB95244DA95C004DA87C /* AppDelegate.m in Sources */,
 				752FCBA6244DA95D004DA87C /* main.m in Sources */,
 				75A995D9244DB33000B0B620 /* DispatchSourceTimer.m in Sources */,

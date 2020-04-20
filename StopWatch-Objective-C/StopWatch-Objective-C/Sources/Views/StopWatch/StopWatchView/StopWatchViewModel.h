@@ -8,16 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "DispatchSourceTimer.h"
+#import "StopWatchViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, StopMachineViewModelState) {
+    initialized,
+    ready,
+    updateInfo,
+    stateError
+};
+
 @protocol StopWatchViewModelType <NSObject>
 
--(instancetype) initWithDispatchSourceTimer: (DispatchSourceTimer *) dispatchSourceTimer;
+-(instancetype) init;
 
 @end
 
-@interface StopWatchViewModel: NSObject <StopWatchViewModelType>
+@interface StopWatchViewModel: NSObject <StopWatchViewModelType, StopWatchViewControllerDelegate>
 
 @end
 

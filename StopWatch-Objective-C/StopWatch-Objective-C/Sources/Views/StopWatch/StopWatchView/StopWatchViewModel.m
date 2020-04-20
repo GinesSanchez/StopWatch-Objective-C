@@ -7,12 +7,12 @@
 //
 
 #import "StopWatchViewModel.h"
-#import "ViewModelState.h"
 #import "StopWatchViewController.h"
+#import "StopWatchConstants.h"
 
 @interface StopWatchViewModel ()
 
-@property (nonatomic) ViewModelState state;
+@property (nonatomic) StopMachineViewModelState state;
 
 @property (nonatomic) DispatchSourceTimer *dispatchSourceTimer;
 
@@ -20,13 +20,13 @@
 
 @implementation StopWatchViewModel
 
--(instancetype) initWithDispatchSourceTimer: (DispatchSourceTimer *) dispatchSourceTimer {
+-(instancetype) init {
     self = [super init];
 
     if (self) {
-        [self addObserverToViewControllerEvent];
-        self.dispatchSourceTimer = dispatchSourceTimer;
-        self.state = loading;
+        //TODO:
+//        self.dispatchSourceTimer = dispatchSourceTimer;
+        self.state = initialized;
         return self;
     }
 
@@ -34,41 +34,24 @@
 }
 
 //MARK: - didSet
--(void) setState: (ViewModelState) state {
+-(void) setState: (StopMachineViewModelState) state {
     _state = state;
     [self notifyDidUpdateState: state];
 }
 
 //MARK: - Notification methods
--(void) addObserverToViewControllerEvent {
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(updateStateWithViewControllerEventNotification:)
-                                                 name: @"DidUpdateStopWatchViewControllerEvent"
-                                               object: nil];
-}
-
--(void) notifyDidUpdateState: (ViewModelState) state {
+-(void) notifyDidUpdateState: (StopMachineViewModelState) state {
     NSNumber *stateNumber = [NSNumber numberWithInt: (int) state];
-    NSDictionary *userInfo = @{ @"state": stateNumber };
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"DidUpdateStopWatchViewModelState"
+    NSDictionary *userInfo = @{ kState: stateNumber };
+    [[NSNotificationCenter defaultCenter] postNotificationName: kDidUpdateStopWatchViewModelState
                                                         object: nil
                                                       userInfo: userInfo];
 }
 
--(void) updateStateWithViewControllerEventNotification: (NSNotification*)notification {
-    if ([[notification name] isEqualToString: @"DidUpdateStopWatchViewControllerEvent"]) {
-        StopWatchViewControllerEvent event = [notification.userInfo[@"event"] intValue];
-        //TODO: Add Switch
-        switch (event) {
-            case didLoad:
-                //TODO:
-                break;
 
-            default:
-                //TODO:
-                break;
-        }
-    }
+//MARK: - Stop Watch View Controller Delegate
+- (void)viewDidLoad {
+    self.state = ready;
 }
 
 @end
