@@ -148,11 +148,7 @@
 			children = (
 				754181D7244DECF40048755C /* StopWatchCoordinator.h */,
 				754181D8244DECF40048755C /* StopWatchCoordinator.m */,
-				754181DD244DF1350048755C /* StopWatchViewModel.h */,
-				754181DE244DF1350048755C /* StopWatchViewModel.m */,
-				754181D2244DECDE0048755C /* StopWatchViewController.h */,
-				754181D3244DECDE0048755C /* StopWatchViewController.m */,
-				754181D4244DECDE0048755C /* StopWatchViewController.xib */,
+				754181E5244DFF3D0048755C /* StopWatchView */,
 			);
 			path = StopWatch;
 			sourceTree = "<group>";
@@ -163,6 +159,18 @@
 				754181E3244DF9110048755C /* ViewModelState.h */,
 			);
 			path = StateEnums;
+			sourceTree = "<group>";
+		};
+		754181E5244DFF3D0048755C /* StopWatchView */ = {
+			isa = PBXGroup;
+			children = (
+				754181DD244DF1350048755C /* StopWatchViewModel.h */,
+				754181DE244DF1350048755C /* StopWatchViewModel.m */,
+				754181D2244DECDE0048755C /* StopWatchViewController.h */,
+				754181D3244DECDE0048755C /* StopWatchViewController.m */,
+				754181D4244DECDE0048755C /* StopWatchViewController.xib */,
+			);
+			path = StopWatchView;
 			sourceTree = "<group>";
 		};
 		75A995D0244DB16500B0B620 /* Resources */ = {
