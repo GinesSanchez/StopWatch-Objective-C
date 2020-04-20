@@ -131,12 +131,12 @@
 			children = (
 				75A995D6244DB30100B0B620 /* Classes */,
 				75A995D3244DB19000B0B620 /* Views */,
-				75A995D2244DB17500B0B620 /* AppDelegate */,
+				75A995D2244DB17500B0B620 /* AppAndSceneDelegate */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		75A995D2244DB17500B0B620 /* AppDelegate */ = {
+		75A995D2244DB17500B0B620 /* AppAndSceneDelegate */ = {
 			isa = PBXGroup;
 			children = (
 				752FCB93244DA95C004DA87C /* AppDelegate.h */,
@@ -144,7 +144,7 @@
 				752FCB96244DA95C004DA87C /* SceneDelegate.h */,
 				752FCB97244DA95C004DA87C /* SceneDelegate.m */,
 			);
-			path = AppDelegate;
+			path = AppAndSceneDelegate;
 			sourceTree = "<group>";
 		};
 		75A995D3244DB19000B0B620 /* Views */ = {
