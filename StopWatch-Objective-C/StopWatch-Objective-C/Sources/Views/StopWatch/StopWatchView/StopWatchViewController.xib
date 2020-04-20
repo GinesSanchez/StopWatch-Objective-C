@@ -20,14 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_10:23,22" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70c-4x-tw8">
-                    <rect key="frame" x="115" y="104" width="184.5" height="48"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50:23,22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70c-4x-tw8">
+                    <rect key="frame" x="20" y="104" width="374" height="99.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="83"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oF7-i1-VX8">
-                    <rect key="frame" x="20" y="192" width="374" height="60"/>
+                    <rect key="frame" x="20" y="243.5" width="374" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZU-xq-IE6">
                             <rect key="frame" x="0.0" y="0.0" width="182" height="60"/>
@@ -63,6 +63,7 @@
                 <constraint firstItem="oF7-i1-VX8" firstAttribute="top" secondItem="70c-4x-tw8" secondAttribute="bottom" constant="40" id="DGM-pe-3yT"/>
                 <constraint firstItem="70c-4x-tw8" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="Fsi-ke-rYm"/>
                 <constraint firstItem="70c-4x-tw8" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="60" id="eze-2a-UPn"/>
+                <constraint firstItem="70c-4x-tw8" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="fEv-b4-Af4"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="oF7-i1-VX8" secondAttribute="trailing" constant="20" id="msP-X5-r3h"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

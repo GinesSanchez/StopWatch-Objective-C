@@ -38,7 +38,7 @@
 }
 
 -(void) setUpLabels {
-    self.timeLabel.text = @"00.00,00";
+    self.timeLabel.text = @"00:00,00";
 }
 
 -(void) setUpButtons {
@@ -66,20 +66,38 @@
                                              selector: @selector(didUpdateViewModelStateWithNotification:)
                                                  name: kDidUpdateStopWatchViewModelState
                                                object: nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(didUpdateTimerInfo:)
+                                                 name: kDidUpdateTimerInfo
+                                               object: nil];
 }
 
 -(void) didUpdateViewModelStateWithNotification: (NSNotification*)notification {
     if ([[notification name] isEqualToString: kDidUpdateStopWatchViewModelState]) {
         StopMachineViewModelState state = [notification.userInfo[kState] intValue];
-        //TODO: Add Switch
         switch (state) {
             case initialized:
-                //TODO: Set to 00:00,00?
                 break;
+            case timerRunning:
+                [self.mainActionButton setTitle: @"Stop" forState: UIControlStateNormal];
+                break;
+            case timerStopped:
+                [self.mainActionButton setTitle: @"Start" forState: UIControlStateNormal];
+                break;
+            default:                
+                break;
+        }
+    }
+}
 
-            default:
-                //TODO:
-                break;
+-(void) didUpdateTimerInfo: (NSNotification *) notification {
+    if ([[notification name] isEqualToString: kDidUpdateTimerInfo]) {
+        NSString *timerInfo = notification.userInfo[kTimerInfo];
+        if (timerInfo) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.timeLabel.text = timerInfo;
+            });
         }
     }
 }

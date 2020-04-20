@@ -10,4 +10,6 @@
 
 #define kDidUpdateViewControllerEvent @"DidUpdateStopWatchViewControllerEvent"
 #define kDidUpdateStopWatchViewModelState @"DidUpdateStopWatchViewModelState"
+#define kTimerInfo @"TimerInfo"
+#define kDidUpdateTimerInfo @"DidUpdateTimerInfo"
 

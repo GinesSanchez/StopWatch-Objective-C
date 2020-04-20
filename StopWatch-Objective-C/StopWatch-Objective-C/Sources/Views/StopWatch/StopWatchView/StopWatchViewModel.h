@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, StopMachineViewModelState) {
     initialized,
     ready,
-    updateInfo,
-    stateError
+    timerRunning,
+    timerStopped
 };
 
 @protocol StopWatchViewModelType <NSObject>
