@@ -7,8 +7,11 @@
 //
 
 #import "StopWatchViewController.h"
+#import "ViewModelState.h"
 
 @interface StopWatchViewController ()
+
+@property (nonatomic) StopWatchViewControllerEvent event;
 
 @end
 
@@ -16,17 +19,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [self addObserverToViewModelState];
+    [self notifyDidUpdateEvent: didLoad];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//MARK: - didSet
+-(void) setEvent: (StopWatchViewControllerEvent) event {
+    _event = event;
+    
 }
-*/
+
+//MARK: - Notification methods
+-(void) addObserverToViewModelState {
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(updateStateWithViewControllerEventNotification:)
+                                                 name: @"DidUpdateStopWatchViewModelState"
+                                               object: nil];
+}
+
+-(void) notifyDidUpdateEvent: (StopWatchViewControllerEvent) event {
+    NSNumber *eventNumber = [NSNumber numberWithInt: (int) event];
+    NSDictionary *userInfo = @{ @"event": eventNumber };
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"DidUpdateStopWatchViewControllerEvent"
+                                                        object: nil
+                                                      userInfo: userInfo];
+}
+
+-(void) updateStateWithViewControllerEventNotification: (NSNotification*)notification {
+    if ([[notification name] isEqualToString: @"DidUpdateStopWatchViewModelState"]) {
+        ViewModelState state = [notification.userInfo[@"state"] intValue];
+        //TODO: Add Switch
+        switch (state) {
+            case loading:
+                //TODO:
+                break;
+
+            default:
+                //TODO:
+                break;
+        }
+    }
+}
 
 @end
