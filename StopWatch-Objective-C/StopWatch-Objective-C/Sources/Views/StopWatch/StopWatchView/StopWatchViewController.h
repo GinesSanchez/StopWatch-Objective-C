@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol StopWatchViewControllerDelegate <NSObject>
 
 -(void) viewDidLoad;
+-(void) mainButtonTapped;
+-(void) secondaryButtonTapped;
 
 @end
 

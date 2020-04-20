@@ -12,6 +12,12 @@
 
 @interface StopWatchViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *mainActionButton;
+@property (weak, nonatomic) IBOutlet UIButton *secondaryActionButton;
+
+
 @end
 
 @implementation StopWatchViewController
@@ -19,9 +25,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self setUp];
     [self addObserverToViewModelState];
     [self.viewModel viewDidLoad];
 }
+
+//MARK: - Setup Methods
+-(void) setUp {
+    [self setUpLabels];
+    [self setUpButtons];
+    [self navigationBar];
+}
+
+-(void) setUpLabels {
+    self.timeLabel.text = @"00.00,00";
+}
+
+-(void) setUpButtons {
+    [self.mainActionButton setTitle: @"Start" forState: UIControlStateNormal];
+    [self.secondaryActionButton setTitle: @"Reset" forState: UIControlStateNormal];
+}
+
+-(void) navigationBar {
+    self.title = @"Timer";
+}
+
+//MARK: - IBActions
+- (IBAction)mainButtonTapped:(id)sender {
+    [self.viewModel mainButtonTapped];
+}
+
+- (IBAction)secondaryButtonTapped:(id)sender {
+    [self.viewModel secondaryButtonTapped];
+}
+
 
 //MARK: - Notification methods
 -(void) addObserverToViewModelState {

@@ -54,4 +54,12 @@
     self.state = ready;
 }
 
+-(void) mainButtonTapped {
+    //TODO:
+}
+
+-(void) secondaryButtonTapped {
+    //TODO:
+}
+
 @end
