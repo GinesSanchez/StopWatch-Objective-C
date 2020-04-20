@@ -15,6 +15,10 @@
 		752FCBA3244DA95D004DA87C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 752FCBA1244DA95D004DA87C /* LaunchScreen.storyboard */; };
 		752FCBA6244DA95D004DA87C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 752FCBA5244DA95D004DA87C /* main.m */; };
 		752FCBB0244DA95E004DA87C /* StopWatch_Objective_CTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 752FCBAF244DA95E004DA87C /* StopWatch_Objective_CTests.m */; };
+		754181D5244DECDE0048755C /* StopWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181D3244DECDE0048755C /* StopWatchViewController.m */; };
+		754181D6244DECDE0048755C /* StopWatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754181D4244DECDE0048755C /* StopWatchViewController.xib */; };
+		754181D9244DECF40048755C /* StopWatchCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181D8244DECF40048755C /* StopWatchCoordinator.m */; };
+		754181DC244DEE4F0048755C /* AppCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 754181DB244DEE4F0048755C /* AppCoordinator.m */; };
 		75A995D9244DB33000B0B620 /* DispatchSourceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */; };
 		75A995DC244DBB0500B0B620 /* DispatchSourceTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */; };
 		75A995DD244DBB7C00B0B620 /* DispatchSourceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */; };
@@ -46,6 +50,14 @@
 		752FCBAB244DA95E004DA87C /* StopWatch-Objective-CTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StopWatch-Objective-CTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		752FCBAF244DA95E004DA87C /* StopWatch_Objective_CTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopWatch_Objective_CTests.m; sourceTree = "<group>"; };
 		752FCBB1244DA95E004DA87C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		754181CF244DEAF80048755C /* Coordinating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Coordinating.h; sourceTree = "<group>"; };
+		754181D2244DECDE0048755C /* StopWatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopWatchViewController.h; sourceTree = "<group>"; };
+		754181D3244DECDE0048755C /* StopWatchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopWatchViewController.m; sourceTree = "<group>"; };
+		754181D4244DECDE0048755C /* StopWatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopWatchViewController.xib; sourceTree = "<group>"; };
+		754181D7244DECF40048755C /* StopWatchCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopWatchCoordinator.h; sourceTree = "<group>"; };
+		754181D8244DECF40048755C /* StopWatchCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopWatchCoordinator.m; sourceTree = "<group>"; };
+		754181DA244DEE4F0048755C /* AppCoordinator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppCoordinator.h; sourceTree = "<group>"; };
+		754181DB244DEE4F0048755C /* AppCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppCoordinator.m; sourceTree = "<group>"; };
 		75A995D7244DB33000B0B620 /* DispatchSourceTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchSourceTimer.h; sourceTree = "<group>"; };
 		75A995D8244DB33000B0B620 /* DispatchSourceTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSourceTimer.m; sourceTree = "<group>"; };
 		75A995DB244DBB0500B0B620 /* DispatchSourceTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSourceTimerTests.m; sourceTree = "<group>"; };
@@ -119,6 +131,26 @@
 			path = DispatchSourceTimer;
 			sourceTree = "<group>";
 		};
+		754181CE244DEAE80048755C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				754181CF244DEAF80048755C /* Coordinating.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		754181D1244DECC10048755C /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				754181D7244DECF40048755C /* StopWatchCoordinator.h */,
+				754181D8244DECF40048755C /* StopWatchCoordinator.m */,
+				754181D2244DECDE0048755C /* StopWatchViewController.h */,
+				754181D3244DECDE0048755C /* StopWatchViewController.m */,
+				754181D4244DECDE0048755C /* StopWatchViewController.xib */,
+			);
+			path = StopWatch;
+			sourceTree = "<group>";
+		};
 		75A995D0244DB16500B0B620 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +161,7 @@
 		75A995D1244DB16E00B0B620 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				754181CE244DEAE80048755C /* Protocols */,
 				75A995D6244DB30100B0B620 /* Classes */,
 				75A995D3244DB19000B0B620 /* Views */,
 				75A995D2244DB17500B0B620 /* AppAndSceneDelegate */,
@@ -143,6 +176,8 @@
 				752FCB94244DA95C004DA87C /* AppDelegate.m */,
 				752FCB96244DA95C004DA87C /* SceneDelegate.h */,
 				752FCB97244DA95C004DA87C /* SceneDelegate.m */,
+				754181DA244DEE4F0048755C /* AppCoordinator.h */,
+				754181DB244DEE4F0048755C /* AppCoordinator.m */,
 			);
 			path = AppAndSceneDelegate;
 			sourceTree = "<group>";
@@ -150,6 +185,7 @@
 		75A995D3244DB19000B0B620 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				754181D1244DECC10048755C /* StopWatch */,
 				75A995D4244DB19500B0B620 /* Default */,
 			);
 			path = Views;
@@ -261,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				754181D6244DECDE0048755C /* StopWatchViewController.xib in Resources */,
 				752FCBA3244DA95D004DA87C /* LaunchScreen.storyboard in Resources */,
 				752FCBA0244DA95D004DA87C /* Assets.xcassets in Resources */,
 				752FCB9E244DA95C004DA87C /* Main.storyboard in Resources */,
@@ -281,10 +318,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				754181DC244DEE4F0048755C /* AppCoordinator.m in Sources */,
 				752FCB9B244DA95C004DA87C /* ViewController.m in Sources */,
 				752FCB95244DA95C004DA87C /* AppDelegate.m in Sources */,
 				752FCBA6244DA95D004DA87C /* main.m in Sources */,
 				75A995D9244DB33000B0B620 /* DispatchSourceTimer.m in Sources */,
+				754181D9244DECF40048755C /* StopWatchCoordinator.m in Sources */,
+				754181D5244DECDE0048755C /* StopWatchViewController.m in Sources */,
 				752FCB98244DA95C004DA87C /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
