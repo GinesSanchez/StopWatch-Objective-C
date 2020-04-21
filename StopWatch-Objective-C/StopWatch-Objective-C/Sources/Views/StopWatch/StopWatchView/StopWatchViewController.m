@@ -38,6 +38,7 @@
 }
 
 -(void) setUpLabels {
+    self.timeLabel.font = [UIFont monospacedDigitSystemFontOfSize: self.timeLabel.font.pointSize weight: UIFontWeightSemibold];
     self.timeLabel.text = @"00:00,00";
 }
 
