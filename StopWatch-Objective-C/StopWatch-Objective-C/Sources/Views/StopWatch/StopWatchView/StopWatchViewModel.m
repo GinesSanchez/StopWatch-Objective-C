@@ -14,7 +14,7 @@
 
 @property (nonatomic) StopMachineViewModelState state;
 @property (nonatomic) StopMachineViewModelEvent event;
-@property (nonatomic) int hundredthOfASecond;
+@property (nonatomic) double hundredthOfASecond;
 @property (nonatomic) DispatchSourceTimer *dispatchSourceTimer;
 @property (nonatomic) dispatch_queue_t serialQueue;
 
@@ -34,6 +34,12 @@
     return nil;
 }
 
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIApplicationWillResignActiveNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIApplicationWillTerminateNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: UIApplicationWillTerminateNotification object: nil];
+}
+
 //MARK: - didSet
 -(void) setState: (StopMachineViewModelState) state {
     _state = state;
@@ -45,7 +51,7 @@
     [self updateStateWithEvent: event];
 }
 
--(void) setHundredthOfASecond: (int)hundredthOfASecond {
+-(void) setHundredthOfASecond: (double)hundredthOfASecond {
     _hundredthOfASecond = hundredthOfASecond;
     [self notifyDidUpdateTimerInfo: hundredthOfASecond];
 }
@@ -132,6 +138,18 @@
             }
             case ready: {
                 self.hundredthOfASecond = 0;
+                [[NSNotificationCenter defaultCenter] addObserver: self
+                                                         selector: @selector(saveStopWatchState:)
+                                                             name: UIApplicationWillResignActiveNotification
+                                                           object: nil];
+                [[NSNotificationCenter defaultCenter] addObserver: self
+                                                         selector: @selector(saveStopWatchState:)
+                                                             name: UIApplicationWillTerminateNotification
+                                                           object: nil];
+                [[NSNotificationCenter defaultCenter] addObserver: self
+                                                         selector: @selector(restoreStopWatchState:)
+                                                             name: UIApplicationDidBecomeActiveNotification
+                                                           object: nil];
                 break;
             }
             case timerRunning: {
@@ -139,10 +157,10 @@
                 self.dispatchSourceTimer = [[DispatchSourceTimer alloc] initWithInterval: 10ul * NSEC_PER_MSEC
                                                                           leeway: 1ul * NSEC_PER_MSEC
                                                                            queue: dispatch_queue_create("com.stopWatch.timerQueue", NULL)
-                                                                           block:^{
+                                                                           block: ^{
+
 
                     _weakSelf.hundredthOfASecond++;
-                    //TODO: Why is not running in the background?
                 }];
 
                 [self.dispatchSourceTimer resume];
@@ -155,6 +173,32 @@
         }
 
     [self notifyDidUpdateState: state];
+}
+
+//MARK: - State Machine
+-(void) saveStopWatchState: (NSNotification*)note {
+    if (self.state == timerRunning) {
+        [[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithDouble: CFAbsoluteTimeGetCurrent() * 100]
+                                                  forKey: @"currentTimeInHundredthOfSeconds"];
+        [[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithDouble: self.hundredthOfASecond]
+                                                  forKey: @"hundredthOfSeconds"];
+    }
+}
+
+-(void) restoreStopWatchState: (NSNotification*)note {
+    NSNumber *previousHundredthOfSecondsNumber = [[NSUserDefaults standardUserDefaults] objectForKey: @"hundredthOfSeconds"];
+    NSNumber *previousTimeInHundredthOfSecondsNumber = [[NSUserDefaults standardUserDefaults] objectForKey: @"currentTimeInHundredthOfSeconds"];
+
+    if (previousHundredthOfSecondsNumber && previousTimeInHundredthOfSecondsNumber) {
+        CFAbsoluteTime previousTimeInHundredthOfSeconds = [previousTimeInHundredthOfSecondsNumber doubleValue];
+        double currentTimeInHundredthOfSeconds = CFAbsoluteTimeGetCurrent() * 100;
+        double previousHundredOfSeconds = [previousHundredthOfSecondsNumber doubleValue];
+        self.hundredthOfASecond = previousHundredOfSeconds + (currentTimeInHundredthOfSeconds - previousTimeInHundredthOfSeconds);
+        self.state = timerRunning;
+    }
+
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"currentTimeInHundredthOfSeconds"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"hundredthOfSeconds"];
 }
 
 @end
