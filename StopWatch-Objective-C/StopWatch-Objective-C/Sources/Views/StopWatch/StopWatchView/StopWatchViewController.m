@@ -30,6 +30,17 @@
     [self.viewModel viewDidLoad];
 }
 
+-(void) dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: kDidUpdateStopWatchViewModelState
+                                                  object: nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: kDidUpdateTimerInfo
+                                                  object: nil];
+}
+
 //MARK: - Setup Methods
 -(void) setUp {
     [self setUpLabels];
