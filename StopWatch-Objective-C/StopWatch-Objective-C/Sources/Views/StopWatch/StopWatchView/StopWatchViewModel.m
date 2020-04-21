@@ -13,8 +13,10 @@
 @interface StopWatchViewModel ()
 
 @property (nonatomic) StopMachineViewModelState state;
+@property (nonatomic) StopMachineViewModelEvent event;
 @property (nonatomic) int hundredthOfASecond;
 @property (nonatomic) DispatchSourceTimer *dispatchSourceTimer;
+@property (nonatomic) dispatch_queue_t serialQueue;
 
 @end
 
@@ -24,8 +26,8 @@
     self = [super init];
 
     if (self) {
-        self.hundredthOfASecond = 0;
-        self.state = initialized;
+        self.serialQueue = dispatch_queue_create(kSerialQueue, NULL);
+        self.event = init;
         return self;
     }
 
@@ -35,7 +37,12 @@
 //MARK: - didSet
 -(void) setState: (StopMachineViewModelState) state {
     _state = state;
-    [self notifyDidUpdateState: state];
+    [self setNextActionWithState: state];
+}
+
+-(void) setEvent: (StopMachineViewModelEvent) event {
+    _event = event;
+    [self updateStateWithEvent: event];
 }
 
 -(void) setHundredthOfASecond: (int)hundredthOfASecond {
@@ -61,38 +68,18 @@
 
 //MARK: - Stop Watch View Controller Delegate
 - (void)viewDidLoad {
-    self.state = ready;
+    self.event = viewDidLoad;
 }
 
 -(void) mainButtonTapped {
-    switch (self.state) {
-        case ready: {
-            StopWatchViewModel * _weakSelf = self;
-            self.dispatchSourceTimer = [[DispatchSourceTimer alloc] initWithInterval: 10ul * NSEC_PER_MSEC
-                                                                      leeway: 1ul * NSEC_PER_MSEC
-                                                                       queue: dispatch_queue_create("com.stopWatch.timerQueue", NULL)
-                                                                       block:^{
-
-                _weakSelf.hundredthOfASecond++;
-                //TODO: Why is not running in the background?
-            }];
-            [self.dispatchSourceTimer resume];
-            self.state = timerRunning;
-            break;
-        }
-        case timerRunning:
-            [self.dispatchSourceTimer cancel];
-            self.state = ready;
-        default:
-            break;
-
-    }
+    self.event = mainButtonTapped;
 }
 
 -(void) secondaryButtonTapped {
-    self.hundredthOfASecond = 0;
+    self.event = secondaryButtonTapped;
 }
 
+//TODO: Move to an extension
 - (NSString *) timeFormatted: (int)totalHundredthOfASecond {
     int hundredthOfASecond = totalHundredthOfASecond % 100;
     int totalSeconds = totalHundredthOfASecond / 100;
@@ -105,6 +92,69 @@
     } else {
         return [NSString stringWithFormat:@"%02d:%02d,%02d", minutes, seconds, hundredthOfASecond];
     }
+}
+
+//MARK: - State Machine
+-(void) updateStateWithEvent: (StopMachineViewModelEvent) event {
+    __weak StopWatchViewModel *weakSelf = self;
+    dispatch_sync(self.serialQueue, ^{
+        switch (weakSelf.event) {
+            case init: {
+                weakSelf.state = initialized;
+                break;
+            }
+            case viewDidLoad: {
+                if (weakSelf.state == initialized) weakSelf.state = ready;
+                break;
+            }
+            case mainButtonTapped: {
+                if (weakSelf.state == ready) {
+                    weakSelf.state = timerRunning;
+                } else if (weakSelf.state == timerRunning) {
+                    weakSelf.state = timerStopped;
+                } else if (weakSelf.state == timerStopped) {
+                    weakSelf.state = timerRunning;
+                }
+                break;
+            }
+            case secondaryButtonTapped: {
+                self.hundredthOfASecond = 0;    //We keep the current state. Don't update the state
+                break;
+            }
+        }
+    });
+}
+
+-(void) setNextActionWithState: (StopMachineViewModelState) state {
+        switch (self.state) {
+            case initialized: {
+                break;
+            }
+            case ready: {
+                self.hundredthOfASecond = 0;
+                break;
+            }
+            case timerRunning: {
+                StopWatchViewModel * _weakSelf = self;
+                self.dispatchSourceTimer = [[DispatchSourceTimer alloc] initWithInterval: 10ul * NSEC_PER_MSEC
+                                                                          leeway: 1ul * NSEC_PER_MSEC
+                                                                           queue: dispatch_queue_create("com.stopWatch.timerQueue", NULL)
+                                                                           block:^{
+
+                    _weakSelf.hundredthOfASecond++;
+                    //TODO: Why is not running in the background?
+                }];
+
+                [self.dispatchSourceTimer resume];
+                break;
+            }
+            case timerStopped: {
+                [self.dispatchSourceTimer cancel];
+                break;
+            }
+        }
+
+    [self notifyDidUpdateState: state];
 }
 
 @end

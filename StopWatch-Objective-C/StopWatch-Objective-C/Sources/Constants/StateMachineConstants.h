@@ -8,3 +8,4 @@
 
 #define kEvent @"event"
 #define kState @"state"
+#define kSerialQueue "com.stopMachine.SerialQueue"

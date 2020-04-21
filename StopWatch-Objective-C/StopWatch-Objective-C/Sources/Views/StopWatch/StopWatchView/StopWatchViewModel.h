@@ -19,6 +19,13 @@ typedef NS_ENUM(NSInteger, StopMachineViewModelState) {
     timerStopped
 };
 
+typedef NS_ENUM(NSInteger, StopMachineViewModelEvent) {
+    init,
+    viewDidLoad,
+    mainButtonTapped,
+    secondaryButtonTapped
+};
+
 @protocol StopWatchViewModelType <NSObject>
 
 -(instancetype) init;
